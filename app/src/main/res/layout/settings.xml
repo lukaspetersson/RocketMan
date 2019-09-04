@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/name_one_edit"
+            android:id="@+id/parameter1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/name_two_edit"
+            android:id="@+id/parameter2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/burned_edit"
+            android:id="@+id/parameter3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -65,7 +65,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/lyre_edit"
+            android:id="@+id/parameter4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -80,7 +80,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/one_hand_lyre_edit"
+            android:id="@+id/parameter4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -95,7 +95,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/home_run_edit"
+            android:id="@+id/parameter5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -110,7 +110,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/rev_edit"
+            android:id="@+id/parameter6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -125,7 +125,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/burnOut_edit"
+            android:id="@+id/parameter7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"

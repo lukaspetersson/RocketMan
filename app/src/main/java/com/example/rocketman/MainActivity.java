@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,11 +30,19 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         final View v = inflater.inflate(R.layout.settings, null);
 
+        //TODO: water
         builder.setView(v);
         builder.setTitle("edit parameters");
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                launch(1000f, 2000);
+
+                EditText parameter1 = v.findViewById(R.id.parameter1);
+                if (!parameter1.getText().toString().matches("")) {
+                    float parameterOne = Integer.parseInt(parameter1.getText().toString());
+                    launch(parameterOne, 2000);
+                }else{
+                    launch(1000, 2000);
+                }
             }
         });
         builder.setNegativeButton("cancel", null);
