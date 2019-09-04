@@ -4,13 +4,16 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.BounceInterpolator;
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -37,10 +40,37 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    public void launch(float height, long time){
-        View rocket = findViewById(R.id.rocket);
+    public void launch(final float height, final long time){
+        final ImageView rocket = findViewById(R.id.rocket);
 
-        ObjectAnimator upAnimation = ObjectAnimator.ofFloat(rocket, "translationY", -1*height);
+        final Context context = this;
+
+        rocket.animate()
+                .translationY(-height)
+                .setDuration(time)
+                .setInterpolator(new AccelerateDecelerateInterpolator())
+                .withEndAction(new Runnable() {
+                    @Override
+                    public void run() {
+                        rocket.animate()
+                                .translationY(0)
+                                .setDuration(time)
+                                .setInterpolator(new AccelerateDecelerateInterpolator())
+                                .withEndAction(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        new AlertDialog.Builder(context)
+                                                .setTitle("Height: "+height)
+                                                .setNegativeButton("ok", null)
+                                                .show();
+                                    }
+                                })
+                                .start();
+                    }
+                })
+                .start();
+
+       /* ObjectAnimator upAnimation = ObjectAnimator.ofFloat(rocket, "translationY", -1*height);
         upAnimation.setDuration(time);
         upAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
         upAnimation.start();
@@ -49,6 +79,6 @@ public class MainActivity extends AppCompatActivity {
         downAnimation.setDuration(time);
         downAnimation.setStartDelay(time);
         downAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        downAnimation.start();
+        downAnimation.start();*/
     }
 }
