@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:id="@+id/settings_layout"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_one"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/name_one_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="18"
+            android:singleLine="true"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/name_two_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="18"
+            android:singleLine="true"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_burned"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/burned_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="2"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_lyre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/lyre_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="2"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_one_hand_lyre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/one_hand_lyre_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="2"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_home_run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/home_run_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="2"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_rev"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/rev_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="2"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_burnOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/burnOut_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="parameter"
+            android:maxLength="2"
+            android:inputType="number"
+            android:drawableStart="@drawable/baseline_android_black_24"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -8,6 +8,9 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,12 +18,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        View rocket = findViewById(R.id.rocket);
-
-       /* ObjectAnimator animation = ObjectAnimator.ofFloat(rocket, "translationY", -1000f);
-        animation.setDuration(2000);
-        animation.start();*/
     }
 
     public void openSettings(View view) {
@@ -33,14 +30,25 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle("edit parameters");
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                launch();
+                launch(1000f, 2000);
             }
         });
         builder.setNegativeButton("cancel", null);
         builder.show();
     }
 
-    public void launch(){
+    public void launch(float height, long time){
+        View rocket = findViewById(R.id.rocket);
 
+        ObjectAnimator upAnimation = ObjectAnimator.ofFloat(rocket, "translationY", -1*height);
+        upAnimation.setDuration(time);
+        upAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+        upAnimation.start();
+
+        ObjectAnimator downAnimation = ObjectAnimator.ofFloat(rocket, "translationY", 0f);
+        downAnimation.setDuration(time);
+        downAnimation.setStartDelay(time);
+        downAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
+        downAnimation.start();
     }
 }
