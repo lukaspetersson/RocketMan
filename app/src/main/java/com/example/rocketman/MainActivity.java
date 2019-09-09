@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void launch(final float height, final long time){
         final ImageView rocket = findViewById(R.id.rocket);
+        final ImageView splash = findViewById(R.id.splash);
+
+        splash.setVisibility(View.VISIBLE);
 
         final Context context = this;
 
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 .withEndAction(new Runnable() {
                     @Override
                     public void run() {
+                        splash.setVisibility(View.INVISIBLE);
                         rocket.animate()
                                 .translationY(0)
                                 .setDuration(time)

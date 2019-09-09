@@ -18,6 +18,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
+    <ImageView
+        android:id="@+id/splash"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="70dp"
+        android:visibility="invisible"
+        android:background="@drawable/splash"
+        app:layout_constraintTop_toTopOf="@+id/rocket"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <Button
         android:id="@+id/points_edit_button"
         android:layout_width="wrap_content"
