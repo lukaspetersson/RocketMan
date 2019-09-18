@@ -70,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
 
                 double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure/(fluidDensity*9.81));
 
-                launch((float) height, (long) height+10);
+                double time = Math.pow((-2*height/9.81),1/2);
+                launch((float) height, (long) time);
             }
         });
         builder.setNegativeButton("cancel", null);
