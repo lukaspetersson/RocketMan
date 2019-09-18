@@ -42,36 +42,36 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                int waterMass=0;
-                int rocketMass=0;
-                float pressure=0;
-                float fluidDensity=0;
+                double waterMass=0;
+                double rocketMass=0;
+                double pressure=0;
+                double fluidDensity=0;
 
 
                 EditText paramDensity = v.findViewById(R.id.paramDensity);
                 if (!paramDensity.getText().toString().matches("")) {
-                    fluidDensity = Integer.parseInt(paramDensity.getText().toString());
+                    fluidDensity = Double.parseDouble(paramDensity.getText().toString());
                 }
 
                 EditText paramPressure = v.findViewById(R.id.paramPressure);
                 if (!paramPressure.getText().toString().matches("")) {
-                    pressure = Integer.parseInt(paramPressure.getText().toString());
+                    pressure = Double.parseDouble(paramPressure.getText().toString());
                 }
 
                 EditText paramRocket = v.findViewById(R.id.paramRocket);
                 if (!paramRocket.getText().toString().matches("")) {
-                    rocketMass = Integer.parseInt(paramRocket.getText().toString());
+                    rocketMass = Double.parseDouble(paramRocket.getText().toString());
                 }
 
                 EditText paramWater = v.findViewById(R.id.paramWater);
                 if (!paramWater.getText().toString().matches("")) {
-                    waterMass = Integer.parseInt(paramWater.getText().toString());
+                    waterMass = Double.parseDouble(paramWater.getText().toString());
                 }
 
-                double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure/(fluidDensity*9.81));
+                double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure*6895/(fluidDensity*9.81));
 
                 double time = Math.pow((-2*height/9.81),1/2);
-                launch((float) height, (long) time);
+                launch((float) height, (long) time*1000);
             }
         });
         builder.setNegativeButton("cancel", null);
@@ -84,7 +84,9 @@ public class MainActivity extends AppCompatActivity {
         final ImageView splash = findViewById(R.id.splash);
         final Spinner soundEffect = findViewById(R.id.soundEffect);
 
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
+        final float displayedHeight = height * 62;
+
+        /*final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
         mp.start();
 
         String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Jacob"};
@@ -102,21 +104,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
-        });
+        });*/
 
         splash.setVisibility(View.VISIBLE);
 
         final Context context = this;
 
         rocket.animate()
-                .translationY(-height)
+                .translationY(-displayedHeight)
                 .setDuration(time)
                 .setInterpolator(new AccelerateDecelerateInterpolator())
                 .withEndAction(new Runnable() {
                     @Override
                     public void run() {
                         splash.setVisibility(View.INVISIBLE);
-                        mp.stop();
+                        //mp.stop();
                         rocket.animate()
                                 .translationY(0)
                                 .setDuration(time)
@@ -135,15 +137,21 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .start();
 
-       /* ObjectAnimator upAnimation = ObjectAnimator.ofFloat(rocket, "translationY", -1*height);
-        upAnimation.setDuration(time);
-        upAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        upAnimation.start();
+            splash.animate()
+                    .translationY(-displayedHeight)
+                    .setDuration(time)
+                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                    .withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            splash.animate()
+                                    .translationY(0)
+                                    .setDuration(time)
+                                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                                    .start();
+                        }
+                    })
+                    .start();
 
-        ObjectAnimator downAnimation = ObjectAnimator.ofFloat(rocket, "translationY", 0f);
-        downAnimation.setDuration(time);
-        downAnimation.setStartDelay(time);
-        downAnimation.setInterpolator(new AccelerateDecelerateInterpolator());
-        downAnimation.start();*/
     }
 }

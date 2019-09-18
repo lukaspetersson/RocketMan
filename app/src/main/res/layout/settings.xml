@@ -31,9 +31,10 @@
             android:id="@+id/paramWater"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="18"
+            android:hint="Mass of water (kg)"
+            android:maxLength="10"
             android:singleLine="true"
+            android:inputType="numberDecimal"
             android:drawableStart="@drawable/baseline_android_black_24"
             />
 
@@ -47,9 +48,10 @@
             android:id="@+id/paramRocket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="18"
+            android:hint="Mass of empty rocket(kg)"
+            android:maxLength="10"
             android:singleLine="true"
+            android:inputType="numberDecimal"
             android:drawableStart="@drawable/baseline_android_black_24"
             />
 
@@ -63,9 +65,9 @@
             android:id="@+id/paramPressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="2"
-            android:inputType="number"
+            android:hint="Pressure(Bar)"
+            android:maxLength="10"
+            android:inputType="numberDecimal"
             android:drawableStart="@drawable/baseline_android_black_24"
             />
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,9 +80,9 @@
             android:id="@+id/paramDensity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="2"
-            android:inputType="number"
+            android:hint="Density of water(kg/m3)"
+            android:maxLength="10"
+            android:inputType="numberDecimal"
             android:drawableStart="@drawable/baseline_android_black_24"
             />
     </com.google.android.material.textfield.TextInputLayout>
