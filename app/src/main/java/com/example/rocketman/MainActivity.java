@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
                 double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure*6895/(fluidDensity*9.81));
 
-                double time = Math.pow((-2*height/9.81),1/2);
+                double time = Math.pow((2*height/9.81),1/2);
                 launch((float) height, (long) time*1000);
             }
         });
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         final float displayedHeight = height * 62;
 
-        /*final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
+       /* final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
         mp.start();
 
         String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Jacob"};
