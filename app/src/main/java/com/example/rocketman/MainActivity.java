@@ -37,19 +37,38 @@ public class MainActivity extends AppCompatActivity {
         LayoutInflater inflater = this.getLayoutInflater();
         final View v = inflater.inflate(R.layout.settings, null);
 
-        //TODO: water
         builder.setView(v);
         builder.setTitle("edit parameters");
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                EditText parameter1 = v.findViewById(R.id.parameter1);
-                if (!parameter1.getText().toString().matches("")) {
-                    float parameterOne = Integer.parseInt(parameter1.getText().toString());
-                    launch(parameterOne, 2000);
-                }else{
-                    launch(1000, 2000);
+                int waterMass;
+                int rocketMass;
+                float pressure;
+                float fluidDensity;
+
+
+                EditText paramDensity = v.findViewById(R.id.paramDensity);
+                if (!paramDensity.getText().toString().matches("")) {
+                    fluidDensity = Integer.parseInt(paramDensity.getText().toString());
                 }
+
+                EditText paramPressure = v.findViewById(R.id.paramPressure);
+                if (!paramPressure.getText().toString().matches("")) {
+                    pressure = Integer.parseInt(paramPressure.getText().toString());
+                }
+
+                EditText paramRocket = v.findViewById(R.id.paramRocket);
+                if (!paramRocket.getText().toString().matches("")) {
+                    rocketMass = Integer.parseInt(paramRocket.getText().toString());
+                }
+
+                EditText paramWater = v.findViewById(R.id.paramWater);
+                if (!paramWater.getText().toString().matches("")) {
+                    waterMass = Integer.parseInt(paramWater.getText().toString());
+                }
+
+                launch(1000, 2000);
             }
         });
         builder.setNegativeButton("cancel", null);

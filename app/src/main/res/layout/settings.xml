@@ -28,7 +28,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/parameter1"
+            android:id="@+id/paramWater"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/parameter2"
+            android:id="@+id/paramRocket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/parameter3"
+            android:id="@+id/paramPressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
@@ -75,67 +75,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/parameter4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="2"
-            android:inputType="number"
-            android:drawableStart="@drawable/baseline_android_black_24"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_one_hand_lyre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/parameter4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="2"
-            android:inputType="number"
-            android:drawableStart="@drawable/baseline_android_black_24"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_home_run"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/parameter5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="2"
-            android:inputType="number"
-            android:drawableStart="@drawable/baseline_android_black_24"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_rev"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/parameter6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="parameter"
-            android:maxLength="2"
-            android:inputType="number"
-            android:drawableStart="@drawable/baseline_android_black_24"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_burnOut"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:id="@+id/parameter7"
+            android:id="@+id/paramDensity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="parameter"
