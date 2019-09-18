@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                int waterMass;
-                int rocketMass;
-                float pressure;
-                float fluidDensity;
+                int waterMass=0;
+                int rocketMass=0;
+                float pressure=0;
+                float fluidDensity=0;
 
 
                 EditText paramDensity = v.findViewById(R.id.paramDensity);
@@ -68,7 +68,9 @@ public class MainActivity extends AppCompatActivity {
                     waterMass = Integer.parseInt(paramWater.getText().toString());
                 }
 
-                launch(1000, 2000);
+                double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure/(fluidDensity*9.81));
+
+                launch((float) height, (long) height+10);
             }
         });
         builder.setNegativeButton("cancel", null);
