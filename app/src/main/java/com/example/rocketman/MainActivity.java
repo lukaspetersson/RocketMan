@@ -23,7 +23,7 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
-    String nameSound = "Max";
+    Spinner soundEffect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         LayoutInflater inflater = this.getLayoutInflater();
         final View v = inflater.inflate(R.layout.settings, null);
+
+        soundEffect = v.findViewById(R.id.soundEffect);
+        String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Jacob", "Caesar"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+        soundEffect.setAdapter(adapter);
 
         builder.setView(v);
         builder.setTitle("edit parameters");
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure*6895/(fluidDensity*9.81));
 
                 double time = Math.pow((2*height/9.81),1/2);
-                launch((float) height, (long) time*1000);
+                launch((float) height, (long) time*1000, soundEffect.getSelectedItem().toString());
             }
         });
         builder.setNegativeButton("cancel", null);
@@ -79,32 +84,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        public void launch(final float height, final long time){
+        public void launch(final float height, final long time, final String nameSound){
         final ImageView rocket = findViewById(R.id.rocket);
         final ImageView splash = findViewById(R.id.splash);
-        final Spinner soundEffect = findViewById(R.id.soundEffect);
+
 
         final float displayedHeight = height * 62;
 
-       /* final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
+        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
         mp.start();
 
-        String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Jacob"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        soundEffect.setAdapter(adapter);
-
-        soundEffect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-
-                nameSound = position + "";
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });*/
+        Log.v("HHHHHHHHHH", nameSound);
 
         splash.setVisibility(View.VISIBLE);
 
@@ -118,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         splash.setVisibility(View.INVISIBLE);
-                        //mp.stop();
+                        mp.stop();
                         rocket.animate()
                                 .translationY(0)
                                 .setDuration(time)
