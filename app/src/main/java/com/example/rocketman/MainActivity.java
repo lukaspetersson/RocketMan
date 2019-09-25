@@ -47,10 +47,10 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                double waterMass=0;
-                double rocketMass=0;
-                double pressure=0;
-                double fluidDensity=0;
+                double waterMass = 0;
+                double rocketMass = 0;
+                double pressure = 0;
+                double fluidDensity = 0;
 
 
                 EditText paramDensity = v.findViewById(R.id.paramDensity);
@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     waterMass = Double.parseDouble(paramWater.getText().toString());
                 }
 
-                double height = Math.pow((waterMass/(rocketMass+waterMass)),2)*(pressure*6895/(fluidDensity*9.81));
+                double height = Math.pow((waterMass / (rocketMass + waterMass)), 2) * (pressure * 6895 / (fluidDensity * 9.81));
 
-                double time = Math.pow((2*height/9.81),1/2);
-                launch((float) height, (long) time*1000, soundEffect.getSelectedItem().toString());
+                double time = Math.pow((2 * height / 9.81), 1 / 2);
+                launch((float) height, (long) time * 1000, soundEffect.getSelectedItem().toString());
             }
         });
         builder.setNegativeButton("cancel", null);
@@ -84,64 +84,68 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        public void launch(final float height, final long time, final String nameSound){
+    public void launch(final float height, final long time, final String nameSound) {
         final ImageView rocket = findViewById(R.id.rocket);
         final ImageView splash = findViewById(R.id.splash);
 
-
         final float displayedHeight = height * 62;
-
-        final MediaPlayer mp = MediaPlayer.create(this, R.raw.sound);
-        mp.start();
-
-        Log.v("HHHHHHHHHH", nameSound);
-
-        splash.setVisibility(View.VISIBLE);
 
         final Context context = this;
 
-        rocket.animate()
-                .translationY(-displayedHeight)
-                .setDuration(time)
-                .setInterpolator(new AccelerateDecelerateInterpolator())
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        splash.setVisibility(View.INVISIBLE);
-                        mp.stop();
-                        rocket.animate()
-                                .translationY(0)
-                                .setDuration(time)
-                                .setInterpolator(new AccelerateDecelerateInterpolator())
-                                .withEndAction(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        new AlertDialog.Builder(context)
-                                                .setTitle("Height: "+height)
-                                                .setNegativeButton("ok", null)
-                                                .show();
-                                    }
-                                })
-                                .start();
-                    }
-                })
-                .start();
+        final MediaPlayer mpCountdown = MediaPlayer.create(this, R.raw.sound);
+        mpCountdown.start();
 
-            splash.animate()
-                    .translationY(-displayedHeight)
-                    .setDuration(time)
-                    .setInterpolator(new AccelerateDecelerateInterpolator())
-                    .withEndAction(new Runnable() {
-                        @Override
-                        public void run() {
-                            splash.animate()
-                                    .translationY(0)
-                                    .setDuration(time)
-                                    .setInterpolator(new AccelerateDecelerateInterpolator())
-                                    .start();
-                        }
-                    })
-                    .start();
+        mpCountdown.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            public void onCompletion(final MediaPlayer mp) {
 
+                final MediaPlayer mpExplosion = MediaPlayer.create(context, R.raw.sound);
+                mpExplosion.start();
+
+                splash.setVisibility(View.VISIBLE);
+
+                rocket.animate()
+                        .translationY(-displayedHeight)
+                        .setDuration(time)
+                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                mpExplosion.stop();
+                                splash.setVisibility(View.INVISIBLE);
+                                rocket.animate()
+                                        .translationY(0)
+                                        .setDuration(time)
+                                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                                        .withEndAction(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                new AlertDialog.Builder(context)
+                                                        .setTitle("Height: " + height)
+                                                        .setNegativeButton("ok", null)
+                                                        .show();
+                                            }
+                                        })
+                                        .start();
+                            }
+                        })
+                        .start();
+
+                splash.animate()
+                        .translationY(-displayedHeight)
+                        .setDuration(time)
+                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                splash.animate()
+                                        .translationY(0)
+                                        .setDuration(time)
+                                        .setInterpolator(new AccelerateDecelerateInterpolator())
+                                        .start();
+                            }
+                        })
+                        .start();
+            }
+        });
     }
 }

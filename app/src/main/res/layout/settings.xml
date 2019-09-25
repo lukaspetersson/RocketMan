@@ -65,7 +65,7 @@
             android:id="@+id/paramPressure"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pressure(bar)"
+            android:hint="Pressure(psi)"
             android:maxLength="10"
             android:inputType="numberDecimal"
             android:drawableStart="@drawable/baseline_android_black_24"
