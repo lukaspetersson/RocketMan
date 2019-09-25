@@ -88,17 +88,47 @@ public class MainActivity extends AppCompatActivity {
         final ImageView rocket = findViewById(R.id.rocket);
         final ImageView splash = findViewById(R.id.splash);
 
+        final int countdownId = R.raw.sound;
+        final int explosionId = R.raw.sound;
+
         final float displayedHeight = height * 62;
 
         final Context context = this;
 
-        final MediaPlayer mpCountdown = MediaPlayer.create(this, R.raw.sound);
+        switch(nameSound) {
+            case "Max":
+                countdownId = R.id.max_countdown;
+                explosionId = R.id.max_explosion;
+                break;
+            case "Lukas":
+                countdownId = R.id.lukas_countdown;
+                explosionId = R.id.lukas_explosion;
+                break;
+            case "Gustav":
+                countdownId = R.id.gustav_countdown;
+                explosionId = R.id.gustav_explosion;
+                break;
+            case "Aron":
+                countdownId = R.id.aron_countdown;
+                explosionId = R.id.aron_explosion;
+                break;
+            case "Jacob":
+                countdownId = R.id.jacob_countdown;
+                explosionId = R.id.jacob_explosion;
+                break;
+            case "Caesar":
+                countdownId = R.id.caesar_countdown;
+                explosionId = R.id.caesar_explosion;
+                break;
+        }
+
+        final MediaPlayer mpCountdown = MediaPlayer.create(this, countdownId);
         mpCountdown.start();
 
         mpCountdown.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(final MediaPlayer mp) {
 
-                final MediaPlayer mpExplosion = MediaPlayer.create(context, R.raw.sound);
+                final MediaPlayer mpExplosion = MediaPlayer.create(context, explosionId);
                 mpExplosion.start();
 
                 splash.setVisibility(View.VISIBLE);
