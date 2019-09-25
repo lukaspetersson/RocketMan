@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Context context = this;
 
-        switch(nameSound) {
+        /*switch(nameSound) {
             case "Max":
                 countdownId = R.id.max_countdown;
                 explosionId = R.id.max_explosion;
@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 countdownId = R.id.caesar_countdown;
                 explosionId = R.id.caesar_explosion;
                 break;
-        }
+        }*/
 
         final MediaPlayer mpCountdown = MediaPlayer.create(this, countdownId);
         mpCountdown.start();
