@@ -88,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
         final ImageView rocket = findViewById(R.id.rocket);
         final ImageView splash = findViewById(R.id.splash);
 
-        final int countdownId = R.raw.sound;
-        final int explosionId = R.raw.sound;
+        final int countdownId = R.raw.lukas_countdown;
+        final int explosionId = R.raw.lukas_explosion;
 
         final float displayedHeight = height * 62;
 
