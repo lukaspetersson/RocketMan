@@ -38,12 +38,12 @@ public class MainActivity extends AppCompatActivity {
         final View v = inflater.inflate(R.layout.settings, null);
 
         soundEffect = v.findViewById(R.id.soundEffect);
-        String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Anton", "Caesar"};
+        String[] items = new String[]{"No sound effects", "Max", "Gustav", "Aron", "Lukas", "Anton", "Caesar"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         soundEffect.setAdapter(adapter);
 
         builder.setView(v);
-        builder.setTitle("edit parameters");
+        builder.setTitle("Edit parameters");
         builder.setPositiveButton("Launch", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
@@ -88,14 +88,18 @@ public class MainActivity extends AppCompatActivity {
         final ImageView rocket = findViewById(R.id.rocket);
         final ImageView splash = findViewById(R.id.splash);
 
-        int countdownId = R.raw.max_countdown;
-        int explosionId = R.raw.max_explosion;
+        int countdownId = 0;
+        int explosionId = 0;
 
         final float displayedHeight = height * 62;
 
         final Context context = this;
 
         switch(nameSound) {
+            case "No sound effects":
+                countdownId = 0;
+                explosionId = 0;
+                break;
             case "Max":
                 countdownId = R.raw.max_countdown;
                 explosionId = R.raw.max_explosion;
@@ -121,62 +125,108 @@ public class MainActivity extends AppCompatActivity {
                 explosionId = R.raw.caesar_explosion;
                 break;
         }
+        if(countdownId == 0){
+            splash.setVisibility(View.VISIBLE);
 
-        final MediaPlayer mpCountdown = MediaPlayer.create(this, countdownId);
-        mpCountdown.start();
+            rocket.animate()
+                    .translationY(-displayedHeight)
+                    .setDuration(time)
+                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                    .withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            splash.setVisibility(View.INVISIBLE);
+                            rocket.animate()
+                                    .translationY(0)
+                                    .setDuration(time)
+                                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                                    .withEndAction(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            new AlertDialog.Builder(context)
+                                                    .setTitle("Height: " + height)
+                                                    .setNegativeButton("ok", null)
+                                                    .show();
+                                        }
+                                    })
+                                    .start();
+                        }
+                    })
+                    .start();
 
-        final int fExplosionId = explosionId;
-        mpCountdown.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            public void onCompletion(final MediaPlayer mp) {
+            splash.animate()
+                    .translationY(-displayedHeight)
+                    .setDuration(time)
+                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                    .withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            splash.animate()
+                                    .translationY(0)
+                                    .setDuration(time)
+                                    .setInterpolator(new AccelerateDecelerateInterpolator())
+                                    .start();
+                        }
+                    })
+                    .start();
 
-                final MediaPlayer mpExplosion = MediaPlayer.create(context, fExplosionId);
-                mpExplosion.start();
+        }else{
+            final MediaPlayer mpCountdown = MediaPlayer.create(this, countdownId);
+            mpCountdown.start();
 
-                splash.setVisibility(View.VISIBLE);
+            final int fExplosionId = explosionId;
+            mpCountdown.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                public void onCompletion(final MediaPlayer mp) {
 
-                rocket.animate()
-                        .translationY(-displayedHeight)
-                        .setDuration(time)
-                        .setInterpolator(new AccelerateDecelerateInterpolator())
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                mpExplosion.stop();
-                                splash.setVisibility(View.INVISIBLE);
-                                rocket.animate()
-                                        .translationY(0)
-                                        .setDuration(time)
-                                        .setInterpolator(new AccelerateDecelerateInterpolator())
-                                        .withEndAction(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                new AlertDialog.Builder(context)
-                                                        .setTitle("Height: " + height)
-                                                        .setNegativeButton("ok", null)
-                                                        .show();
-                                            }
-                                        })
-                                        .start();
-                            }
-                        })
-                        .start();
+                    final MediaPlayer mpExplosion = MediaPlayer.create(context, fExplosionId);
+                    mpExplosion.start();
 
-                splash.animate()
-                        .translationY(-displayedHeight)
-                        .setDuration(time)
-                        .setInterpolator(new AccelerateDecelerateInterpolator())
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                splash.animate()
-                                        .translationY(0)
-                                        .setDuration(time)
-                                        .setInterpolator(new AccelerateDecelerateInterpolator())
-                                        .start();
-                            }
-                        })
-                        .start();
-            }
-        });
+                    splash.setVisibility(View.VISIBLE);
+
+                    rocket.animate()
+                            .translationY(-displayedHeight)
+                            .setDuration(time)
+                            .setInterpolator(new AccelerateDecelerateInterpolator())
+                            .withEndAction(new Runnable() {
+                                @Override
+                                public void run() {
+                                    mpExplosion.stop();
+                                    splash.setVisibility(View.INVISIBLE);
+                                    rocket.animate()
+                                            .translationY(0)
+                                            .setDuration(time)
+                                            .setInterpolator(new AccelerateDecelerateInterpolator())
+                                            .withEndAction(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    new AlertDialog.Builder(context)
+                                                            .setTitle("Height: " + height)
+                                                            .setNegativeButton("ok", null)
+                                                            .show();
+                                                }
+                                            })
+                                            .start();
+                                }
+                            })
+                            .start();
+
+                    splash.animate()
+                            .translationY(-displayedHeight)
+                            .setDuration(time)
+                            .setInterpolator(new AccelerateDecelerateInterpolator())
+                            .withEndAction(new Runnable() {
+                                @Override
+                                public void run() {
+                                    splash.animate()
+                                            .translationY(0)
+                                            .setDuration(time)
+                                            .setInterpolator(new AccelerateDecelerateInterpolator())
+                                            .start();
+                                }
+                            })
+                            .start();
+                }
+            });
+        }
     }
 }
