@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
                 double height = Math.pow((waterMass / (rocketMass + waterMass)), 2) * (pressure * 6895 / (fluidDensity * 9.81));
 
-                double time = Math.pow((2 * height / 9.81), 1 / 2);
+                double time = Math.pow((2 * height / 9.81), 1 / 2)*2;
                 launch((float) height, (long) time * 1000, soundEffect.getSelectedItem().toString());
             }
         });
