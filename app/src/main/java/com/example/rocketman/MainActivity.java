@@ -174,6 +174,8 @@ public class MainActivity extends AppCompatActivity {
             final MediaPlayer mpCountdown = MediaPlayer.create(this, countdownId);
             mpCountdown.start();
 
+            Log.v("HHHHHHHHHH", mpCountdown+"");
+
             final int fExplosionId = explosionId;
             mpCountdown.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 public void onCompletion(final MediaPlayer mp) {
