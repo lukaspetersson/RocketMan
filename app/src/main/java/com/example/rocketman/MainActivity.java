@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         final View v = inflater.inflate(R.layout.settings, null);
 
         soundEffect = v.findViewById(R.id.soundEffect);
-        String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Jacob", "Caesar"};
+        String[] items = new String[]{"Max", "Gustav", "Aron", "Lukas", "Anton", "Caesar"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
         soundEffect.setAdapter(adapter);
 
@@ -88,47 +88,48 @@ public class MainActivity extends AppCompatActivity {
         final ImageView rocket = findViewById(R.id.rocket);
         final ImageView splash = findViewById(R.id.splash);
 
-        final int countdownId = R.raw.lukas_countdown;
-        final int explosionId = R.raw.lukas_explosion;
+        int countdownId = R.raw.max_countdown;
+        int explosionId = R.raw.max_explosion;
 
         final float displayedHeight = height * 62;
 
         final Context context = this;
 
-        /*switch(nameSound) {
+        switch(nameSound) {
             case "Max":
-                countdownId = R.id.max_countdown;
-                explosionId = R.id.max_explosion;
+                countdownId = R.raw.max_countdown;
+                explosionId = R.raw.max_explosion;
                 break;
             case "Lukas":
-                countdownId = R.id.lukas_countdown;
-                explosionId = R.id.lukas_explosion;
+                countdownId = R.raw.lukas_countdown;
+                explosionId = R.raw.lukas_explosion;
                 break;
             case "Gustav":
-                countdownId = R.id.gustav_countdown;
-                explosionId = R.id.gustav_explosion;
+                countdownId = R.raw.gustav_countdown;
+                explosionId = R.raw.gustav_explosion;
                 break;
             case "Aron":
-                countdownId = R.id.aron_countdown;
-                explosionId = R.id.aron_explosion;
+                countdownId = R.raw.aron_countdown;
+                explosionId = R.raw.aron_explosion;
                 break;
-            case "Jacob":
-                countdownId = R.id.jacob_countdown;
-                explosionId = R.id.jacob_explosion;
+            case "Anton":
+                countdownId = R.raw.anton_countdown;
+                explosionId = R.raw.anton_explosion;
                 break;
             case "Caesar":
-                countdownId = R.id.caesar_countdown;
-                explosionId = R.id.caesar_explosion;
+                countdownId = R.raw.caesar_countdown;
+                explosionId = R.raw.caesar_explosion;
                 break;
-        }*/
+        }
 
         final MediaPlayer mpCountdown = MediaPlayer.create(this, countdownId);
         mpCountdown.start();
 
+        final int fExplosionId = explosionId;
         mpCountdown.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             public void onCompletion(final MediaPlayer mp) {
 
-                final MediaPlayer mpExplosion = MediaPlayer.create(context, explosionId);
+                final MediaPlayer mpExplosion = MediaPlayer.create(context, fExplosionId);
                 mpExplosion.start();
 
                 splash.setVisibility(View.VISIBLE);
